@@ -1,0 +1,33 @@
+pkgname=nzbget-svn
+pkgver=1152
+pkgrel=1
+pkgdesc="Download from Usenet using .nzb files"
+arch=('i686' 'x86_64')
+url="http://nzbget.sourceforge.net/"
+license=('GPL')
+depends=('libstdc++5' 'libxml2' 'python' 'ncurses')
+makedepends=('svn' 'autoconf' 'automake')
+provides=('nzbget-svn')
+conflicts=('nzbget')
+backup=('usr/local/share/nzbget/nzbget.conf')
+install=nzbget-svn.install
+source=('nzbget::svn://svn.code.sf.net/p/nzbget/code/trunk')
+sha256sums=('SKIP')
+
+build() {
+  cd "$srcdir/${pkgname%-*}"
+  
+  ./configure --prefix='/usr' --sbindir='/usr/bin' --with-tlslib=OpenSSL 
+  make
+}
+
+package() {
+  cd "$srcdir/${pkgname%-*}"
+
+  make DESTDIR="${pkgdir}" install
+
+  install -m 755 -d "$pkgdir/usr/share/nzbget"
+  install -m 644 -t "$pkgdir/usr/share/nzbget" AUTHORS ChangeLog README
+  install -m 755 -d "$pkgdir/usr/local/share/nzbget"
+  install -m 644 -D "$srcdir/nzbget/nzbget.conf" "$pkgdir/usr/local/share/nzbget/nzbget.conf"
+}

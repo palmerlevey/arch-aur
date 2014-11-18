@@ -1,0 +1,10 @@
+post_install() {
+  post_upgrade
+  passwd -l oscam &>/dev/null
+}
+
+post_upgrade() {
+  # create user/group that the daemon will run as by default, do not delete this on uninstall, as it will own files
+  getent group oscam >/dev/null || groupadd oscam
+  getent passwd oscam >/dev/null || useradd -c 'OSCam' -g oscam -G video,lock,uucp -b '/etc' -m -s /bin/false oscam
+}

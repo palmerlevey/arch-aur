@@ -1,0 +1,29 @@
+pkgname=oscam-svn
+pkgver=9945
+pkgrel=1
+pkgdesc="The Open Source Conditional Access Module daemon"
+arch=('i686' 'x86_64')
+url="http://www.streamboard.tv/svn/oscam/trunk/"
+license=('GPL3')
+depends=('libusb')
+makedepends=('svn' 'autoconf' 'automake' 'openssl' 'dialog')
+provides=('oscam-svn')
+conflicts=('oscam')
+install=oscam-svn.install
+source=("$pkgname::svn+http://www.streamboard.tv/svn/oscam/trunk")
+sha256sums=('SKIP')
+
+build() {
+  cd "$srcdir/$pkgname"
+  
+  make config 
+  make OSCAM_BIN=oscam CONF_DIR=/etc/oscam
+}
+
+package() {
+  install -D -m 755 "$srcdir/$pkgname/oscam" "$pkgdir/usr/bin/oscam"
+  install -m 755 -d "$pkgdir/etc/oscam"
+  install -m 755 -d "$pkgdir/var/log/oscam"
+  install -m 755 -d "$pkgdir/usr/doc/oscam/example"
+  install -m 644 "$srcdir/$pkgname/Distribution/doc/example"/* "${pkgdir}/usr/doc/oscam/example"
+}

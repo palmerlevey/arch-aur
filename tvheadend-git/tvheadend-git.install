@@ -1,0 +1,10 @@
+post_install() {
+  post_upgrade
+  passwd -l tvheadend &>/dev/null
+}
+
+post_upgrade() {
+  # create user/group that the daemon will run as by default, do not delete this on uninstall, as it will own files
+  getent group tvheadend >/dev/null || groupadd tvheadend
+  getent passwd tvheadend >/dev/null || useradd -c 'TV streaming server' -g tvheadend -G video -b '/home' -m -s /bin/false tvheadend
+ }
