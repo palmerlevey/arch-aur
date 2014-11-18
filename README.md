@@ -1,4 +1,4 @@
 arch-aur
 ========
 
-Arch Linux PKG's
+Arch Linux PKG's, use at own risk.
