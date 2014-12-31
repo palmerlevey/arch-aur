@@ -1,5 +1,5 @@
 pkgname=nzbget-svn
-pkgver=1177
+pkgver=1183
 pkgrel=1
 pkgdesc="Download from Usenet using .nzb files"
 arch=('i686' 'x86_64')
