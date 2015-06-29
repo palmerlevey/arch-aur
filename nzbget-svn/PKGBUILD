@@ -1,12 +1,12 @@
 pkgname=nzbget-svn
-pkgver=1183
+pkgver=1308
 pkgrel=1
 pkgdesc="Download from Usenet using .nzb files"
 arch=('i686' 'x86_64')
 url="http://nzbget.sourceforge.net/"
 license=('GPL')
-depends=('libstdc++5' 'libxml2' 'python' 'ncurses')
-makedepends=('svn' 'autoconf' 'automake')
+depends=('libxml2' 'python')
+makedepends=('svn')
 provides=('nzbget-svn')
 conflicts=('nzbget')
 backup=('usr/local/share/nzbget/nzbget.conf')
@@ -17,7 +17,7 @@ sha256sums=('SKIP')
 build() {
   cd "$srcdir/${pkgname%-*}"
   
-  ./configure --prefix='/usr' --sbindir='/usr/bin' --with-tlslib=OpenSSL 
+  ./configure --prefix='/usr' --sbindir='/usr/bin' --enable-parcheck --with-tlslib=OpenSSL 
   make
 }
 
