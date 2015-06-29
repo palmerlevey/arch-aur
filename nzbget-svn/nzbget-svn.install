@@ -6,5 +6,5 @@ post_install() {
 post_upgrade() {
   # create user/group that the daemon will run as by default, do not delete this on uninstall, as it will own files
   getent group nzbget >/dev/null || groupadd nzbget
-  getent passwd nzbget >/dev/null || useradd -c 'NZBGet' -g nzbget -b 'usr/local/share' -m -s /bin/false nzbget
+  getent passwd nzbget >/dev/null || useradd -c 'NZBGet' -g nzbget -b '/usr/local/share' -m -s /bin/false nzbget
 }
