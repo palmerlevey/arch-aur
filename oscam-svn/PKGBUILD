@@ -1,5 +1,5 @@
 pkgname=oscam-svn
-pkgver=9945
+pkgver=10853
 pkgrel=1
 pkgdesc="The Open Source Conditional Access Module daemon"
 arch=('i686' 'x86_64')
