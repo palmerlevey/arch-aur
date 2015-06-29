@@ -3,27 +3,29 @@ pkgname=tvheadend-git
 pkgver=20150629
 pkgrel=1
 pkgdesc="TV streaming server for Linux"
-arch=('i686' 'x86_64')
+arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h')
 url="https://github.com/tvheadend/tvheadend"
 license=('GPL3')
 depends=('openssl' 'python' 'ffmpeg' 'uriparser')
 optdepends=('avahi' 'mlt')
 makedepends=('git' 'bzip2' 'zlib' 'wget')
-provides=("${pkgname%-*}")
-conflicts=("${pkgname%-*}")
+provides=('tvheadend-git')
+conflicts=('tvheadend' 'hts-tvheadend' 'hts-tvheadend-svn' 'hts-tvheadend-git')
 install=tvheadend-git.install
 source=('git://github.com/tvheadend/tvheadend.git')
 sha256sums=('SKIP')
 
+prepare() {
+  cd "$srcdir/$_gitname"
+  ./configure --prefix=/usr --disable-avahi
+}
+
 build() {
   cd "$srcdir/$_gitname"
-
-  ./configure --prefix=/usr --disable-avahi
   make
 }
 
 package() {
   cd "$srcdir/$_gitname"
-
-  make DESTDIR="${pkgdir}" install
+  make DESTDIR="$pkgdir/" install
 }
