@@ -1,5 +1,5 @@
 pkgname=oscam-svn
-pkgver=10853
+pkgver=10775
 pkgrel=1
 pkgdesc="The Open Source Conditional Access Module daemon"
 arch=('i686' 'x86_64')
@@ -15,7 +15,6 @@ sha256sums=('SKIP')
 
 build() {
   cd "$srcdir/$pkgname"
-  
   make config 
   make OSCAM_BIN=oscam CONF_DIR=/etc/oscam
 }
