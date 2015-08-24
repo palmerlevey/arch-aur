@@ -1,0 +1,56 @@
+# Maintainer: Cedric MATHIEU <me.xenom @ gmail.com>
+# Contributor : Det <nimetonmaili @ gmail.com>
+# Contributor: coderoar <coderoar @ gmail.com>
+# Contributor: kang <kang @ mozilla.com>
+# Contributor: John Reese <jreese @ noswap.com>
+
+pkgname=firefox
+pkgver=43.0a1
+pkgrel=1
+pkgdesc='Standalone web browser from mozilla.org, nightly build'
+arch=('i686' 'x86_64')
+license=('MPL' 'GPL' 'LGPL')
+url="https://www.mozilla.org/firefox/"
+depends=('gtk2' 'mozilla-common' 'libxt' 'startup-notification' 'mime-types'
+         'dbus-glib' 'alsa-lib' 'desktop-file-utils' 'hicolor-icon-theme'
+         'libvpx' 'icu' 'libevent' 'nss' 'hunspell' 'sqlite')
+makedepends=('unzip' 'zip' 'diffutils' 'python2' 'yasm' 'mesa' 'imake'
+             'xorg-server-xvfb' 'libpulse' 'gst-plugins-base-libs'
+             'inetutils')
+optdepends=('networkmanager: Location detection via available WiFi networks'
+            'gst-plugins-good: h.264 video'
+            'gst-libav: h.264 video'
+            'upower: Battery API')
+conflicts=('firefox-nightly' 'firefox=40.0.2')
+install=firefox.install
+options=('!emptydirs' '!makeflags')
+_file="firefox-$pkgver.en-US.linux-$CARCH.tar.bz2"
+source=("https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/$_file"
+        mozconfig
+        firefox.desktop
+        vendor.js)
+sha256sums=('81aa6b600dbb07e5d85314b5cfb5128be9a6c7be467c51d9ffb148d0ed7f77c2'
+            'f09a9f20c5549ad296638becf98d474f945c9c9d110e0bec729d41383ce04fdd'
+            '6c438e48ef68587230f7e0bb32e068e22b68d0c92a42db1b4b731cdf69b3b91a'
+            '02cdd59f83be769bf11f9fd1c138e583a00e6861c18ece744af05e1c7e9ac63c')
+validpgpkeys=('2B90598A745E992F315E22C58AB132963A06537A')
+
+pkgver() {
+	echo "${_version}.$(date +%Y%m%d)"
+}
+
+package() {
+  install -d "$pkgdir"/usr/{bin,lib,share/{applications,pixmaps}}
+
+  cp -r firefox "$pkgdir/usr/lib/"
+  ln -s /usr/lib/firefox/firefox-bin "$pkgdir/usr/bin/firefox"
+
+  # Use system-provided dictionaries
+  rm -rf "$pkgdir"/usr/lib/firefox/{dictionaries,hyphenation}
+  ln -s /usr/share/hunspell "$pkgdir/usr/lib/firefox/dictionaries"
+  ln -s /usr/share/hyphen "$pkgdir/usr/lib/firefox/hyphenation"
+
+  install -Dm644 "$srcdir/vendor.js" "$pkgdir/usr/lib/firefox/browser/defaults/preferences/vendor.js"
+  install -m644 "$srcdir"/firefox.desktop "$pkgdir/usr/share/applications/"
+  install -m644 "$pkgdir/usr/lib/firefox/browser/icons/mozicon128.png" "${pkgdir}/usr/share/pixmaps/${pkgname}-icon.png"
+}
