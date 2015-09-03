@@ -20,7 +20,6 @@ sha256sums=('7712cceed7e380b782693aaa2a1e69ea35f79a164464c595769d418c176ad13b'
 
 prepare() {
     tar --strip-components=1 -zxvf "manager-accounting_$pkgver.tar.gz"
-
     patch -p1 -i "${srcdir}/fix-path.patch"
 }
 
