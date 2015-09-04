@@ -1,12 +1,13 @@
 # Maintainer: François M. <francois5537 @ gmail.com>
 # Contributor: Cedric MATHIEU <me.xenom @ gmail.com>
-# Contributor : Det <nimetonmaili @ gmail.com>
+# Contributor: Det <nimetonmaili @ gmail.com>
 # Contributor: coderoar <coderoar @ gmail.com>
 # Contributor: kang <kang @ mozilla.com>
 # Contributor: John Reese <jreese @ noswap.com>
 
+_srcver=43.0a1
 pkgname=firefox
-pkgver=43.0a1
+pkgver=43.0a1.20150904
 pkgrel=1
 pkgdesc='Standalone web browser from mozilla.org, nightly build'
 arch=('i686' 'x86_64')
@@ -25,19 +26,18 @@ optdepends=('networkmanager: Location detection via available WiFi networks'
 conflicts=('firefox-nightly' 'firefox=40.0.2')
 install=firefox.install
 options=('!emptydirs' '!makeflags')
-_file="firefox-$pkgver.en-US.linux-$CARCH.tar.bz2"
-source=("https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/$_file"
+source=("https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/firefox-$_srcver.en-US.linux-$CARCH.tar.bz2"
         mozconfig
         firefox.desktop
         vendor.js)
-sha256sums=('b35f96de1d2f24b59b1cd8d0706d605923826f59a5973f2f234d29bed4b7968e'
+sha256sums=('737cf82c530713a1dfa5435425cc519602451f7408e584e12ca9299a6acf7acc'
             'f09a9f20c5549ad296638becf98d474f945c9c9d110e0bec729d41383ce04fdd'
             '6c438e48ef68587230f7e0bb32e068e22b68d0c92a42db1b4b731cdf69b3b91a'
             '02cdd59f83be769bf11f9fd1c138e583a00e6861c18ece744af05e1c7e9ac63c')
 validpgpkeys=('2B90598A745E992F315E22C58AB132963A06537A')
 
 pkgver() {
-	echo "${_version}.$(date +%Y%m%d)"
+	echo "${_srcver}.$(date +%Y%m%d)"
 }
 
 package() {
