@@ -30,7 +30,7 @@ source=("https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/fi
         mozconfig
         firefox.desktop
         vendor.js)
-sha256sums=('7f64ae881e759bfb61edc11ce336cb4a33bed859c9b178e601af18941bf4d190'
+sha256sums=('e2ecc5ab6a071e7e828f9c5c965a6e8309fdde4511fafa1776238e60f3bbb0dd'
             'f09a9f20c5549ad296638becf98d474f945c9c9d110e0bec729d41383ce04fdd'
             '6c438e48ef68587230f7e0bb32e068e22b68d0c92a42db1b4b731cdf69b3b91a'
             '02cdd59f83be769bf11f9fd1c138e583a00e6861c18ece744af05e1c7e9ac63c')
