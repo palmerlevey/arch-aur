@@ -5,9 +5,9 @@
 # Contributor: kang <kang @ mozilla.com>
 # Contributor: John Reese <jreese @ noswap.com>
 
-_srcver=43.0a1
+_srcver=44.0a1
 pkgname=firefox
-pkgver=43.0a1.20150904
+pkgver=44.0a1.20150923
 pkgrel=1
 pkgdesc='Standalone web browser from mozilla.org, nightly build'
 arch=('i686' 'x86_64')
