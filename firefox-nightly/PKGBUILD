@@ -5,9 +5,9 @@
 # Contributor: kang <kang @ mozilla.com>
 # Contributor: John Reese <jreese @ noswap.com>
 
-_srcver=43.0a1
+_srcver=44.0a1
 pkgname=firefox
-pkgver=43.0a1.20150904
+pkgver=44.0a1.20150923
 pkgrel=1
 pkgdesc='Standalone web browser from mozilla.org, nightly build'
 arch=('i686' 'x86_64')
@@ -30,7 +30,7 @@ source=("https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/fi
         mozconfig
         firefox.desktop
         vendor.js)
-sha256sums=('737cf82c530713a1dfa5435425cc519602451f7408e584e12ca9299a6acf7acc'
+sha256sums=('7f64ae881e759bfb61edc11ce336cb4a33bed859c9b178e601af18941bf4d190'
             'f09a9f20c5549ad296638becf98d474f945c9c9d110e0bec729d41383ce04fdd'
             '6c438e48ef68587230f7e0bb32e068e22b68d0c92a42db1b4b731cdf69b3b91a'
             '02cdd59f83be769bf11f9fd1c138e583a00e6861c18ece744af05e1c7e9ac63c')
